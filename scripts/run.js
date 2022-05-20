@@ -52,6 +52,15 @@ const main = async () => {
     "Balance of owner after withdrawal:",
     hre.ethers.utils.formatEther(ownerBalance)
   );
+
+  try {
+    txn = await domainContract.register("12", {
+      value: hre.ethers.utils.parseEther("1234"),
+    });
+    await txn.wait();
+  } catch (error) {
+    console.log(error.message);
+  }
 };
 
 const runMain = async () => {
